@@ -37,7 +37,7 @@ all: $(NAME)
 
 $(NAME): $(PHILO_OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(PHILO_OBJS) $(DFLAGS)
-	@echo $(GREEN)"philo ✅"$(RESET)
+	@echo $(GREEN)"\n✅✅✅✅✅✅✅✅✅\n✅✅✅PHILO!✅✅✅\n✅✅✅✅✅✅✅✅✅\n"$(RESET)
 
 $(BUILD_DIR)%.o: $(PHILO_DIR)%.c
 	@mkdir -p $(BUILD_DIR)
@@ -51,6 +51,8 @@ clean:
 fclean: clean
 	@$(RM) $(NAME)
 	@echo $(RED)"❗️ fcleaned"$(RESET)
+	@echo $(RED)"\n❗️❗️❗️❗️❗️❗️❗️❗️❗️\n❗️❗️❗️PHILO!❗️❗️❗️\n❗️❗️❗️❗️❗️❗️❗️❗️❗️\n"$(RESET)
+
 
 re: fclean all
 

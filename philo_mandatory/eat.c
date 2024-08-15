@@ -22,6 +22,15 @@ void	eating(t_philo *philo);
 
 void	eating(t_philo *philo)
 {
+	printf("\n\n EATING \n\n");
+	printf("philo full: %d\n", philo->full);
+	printf("philo meals counter: %ld\n", philo->meals_counter);
+	printf("philo id %d\n", philo->id);
+	printf("philo last meal time %ld\n", philo->last_meal_time);
+	printf("philo left fork %d\n", philo->left_fork->id);
+	printf("philo right fork %d\n", philo->right_fork->id);
+	printf("--------------------\n");
+	
 	mutex_handle(&philo->left_fork->mutex, LOCK);
 	write_status(TAKE_LEFT_FORK, philo, DEBUG_MODE);
 	mutex_handle(&philo->right_fork->mutex, LOCK);

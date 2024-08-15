@@ -41,7 +41,7 @@ static void	thread_status(int status, t_opcode opcode)
 	else if (EINVAL == status && (JOIN == opcode || DETACH == opcode))
 		error_exit(RED"The value specified by thread is not joinable.\n"RESET);
 	else if (ESRCH == status)
-		error_exit(RED"No thread could be found carresponding to that"
+		error_exit(RED"No thread could be found corresponding to that"
 			"specified by the given thread ID.\n"RESET);
 }
 

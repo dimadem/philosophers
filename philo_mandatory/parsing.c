@@ -6,7 +6,7 @@
 /*   By: dmdemirk <dmdemirk@student.42london.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:35:13 by dmdemirk          #+#    #+#             */
-/*   Updated: 2024/08/15 17:44:44 by dmdemirk         ###   ########.fr       */
+/*   Updated: 2024/08/15 18:40:39 by dmdemirk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static	const char	*valid_input(const char *str)
 	int			string_len;
 	const char	*number;
 
-	len = 0;
+	string_len = 0;
 	while (is_space(*str))
 		str++;
 	if (*str == '+')
@@ -41,7 +41,7 @@ static	const char	*valid_input(const char *str)
 	number = str;
 	while (is_digit(*str++))
 		++string_len;
-	if (len > 10)
+	if (string_len > 10)
 		error_exit("Number is too big");
 	return (number);
 }
