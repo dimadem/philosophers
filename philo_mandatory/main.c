@@ -18,6 +18,7 @@ int main(int argc, char **argv)
   t_table table;
 
   error_input_checker(argc, argv);
+  parse_input(&table, argv);
   init_table(&table);
   dinner(&table);
   // 4. clean(&table);

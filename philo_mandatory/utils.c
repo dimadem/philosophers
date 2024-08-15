@@ -2,7 +2,7 @@
 
 void error_exit(const char *msg);
 long get_time(t_time_code time_code);
-void precise_usleep(long usec, t_table *table);
+void precise_usleep(t_table *table, long usec);
 
 void error_exit(const char *msg)
 {
@@ -28,7 +28,7 @@ long get_time(t_time_code time_code)
 	return (1337);
 }
 
-void precise_usleep(long usec, t_table *table)
+void precise_usleep(t_table *table, long usec)
 {
 	long start;
 	long elapsed;
@@ -43,10 +43,10 @@ void precise_usleep(long usec, t_table *table)
 		remaining = usec - elapsed;
 		if (remaining > 1e3)
 			usleep(remaining / 2);
-		else
+		else // less then 1ms
 		{
 			// SPINLOCK
-			while (get_time(MICROSECONDS) - start < usec)
+			while ((get_time(MICROSECONDS) - start) < usec)
 				;
 		}
 		usleep(100);

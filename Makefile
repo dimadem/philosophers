@@ -27,7 +27,7 @@ PHILO_SOURCES	=	$(PHILO_DIR)/dinner.c \
 					$(PHILO_DIR)/think.c \
 					$(PHILO_DIR)/utils.c \
 					$(PHILO_DIR)/wrapper_functions.c \
-					$(PHILO_DIR)/write.c \
+					$(PHILO_DIR)/write_status.c \
 
 #build
 PHILO_OBJS	=	$(PHILO_SOURCES:$(PHILO_DIR)%.c=$(BUILD_DIR)%.o)

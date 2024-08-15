@@ -12,16 +12,17 @@ void	*dinner_simulation(void *data)
 	
 	while(!simulation_finished(philo->table))
 	{
-		//1. am i full
+		//1. Is philo full
 		if (philo->full)
-			break ;
+			break ; // get_bool(&philo->mutex, &philo->full) == true)
 
 		//2. eat
+		eating(philo);
 
-
-		//3. sleep ->write status
 		write_status(SLEEPING, philo, DEBUG_MODE);
-		precise_usleep(philo->table->time_to_sleep, philo->table);
+		
+		//3. sleep ->write status
+		precise_usleep(philo->table, philo->table->time_to_sleep);
 
 		//4. think
 		thinking(philo);
@@ -37,7 +38,6 @@ void	dinner(t_table * table)
 	int	i;
 
 	i = -1;
-
 	if (0 == table->meals_number)
 		return ; // back to main & clean
 	else if (1 == table->philosophers_number)
@@ -50,7 +50,6 @@ void	dinner(t_table * table)
 		}
 	}
 	table->start_simulation = get_time(MILLISECONDS);
-
 	set_bool(&table->mutex, &table->all_threads_ready, true);
 	i = -1;
 	while (++i < table->philosophers_number)

@@ -48,7 +48,7 @@ static void	mutex_status(int status, t_opcode opcode)
 	if (0 == status)
 		return ;	
 	if (EINVAL == status && (LOCK == opcode || UNLOCK == opcode || DESTROY == opcode))
-		error_exit(RED"The value specified by mutes is invalid.\n"RESET);
+		error_exit(RED"The value specified by mutex is invalid.\n"RESET);
 	else if (EINVAL == status && INIT == opcode)
 		error_exit(RED"The value specified by attr is invalid.\n"RESET);
 	else if (EDEADLK == status)

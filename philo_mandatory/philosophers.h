@@ -127,7 +127,7 @@ bool	simulation_finished(t_table *table);
 /* utils */
 void	error_exit(const char *msg);
 long  get_time(t_time_code time_code);
-void  precise_usleep(long usec, t_table *table);
+void  precise_usleep(t_table *table, long usec);
 
 /* monitor utils*/
 void  wait_all_threads(t_table *table);

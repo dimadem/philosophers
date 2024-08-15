@@ -61,4 +61,5 @@ void	parse_input(t_table *table, char **argv)
 		table->meals_number = ft_atol(argv[5]);
 	else
 		table->meals_number = -1;
+	printf("table meals number %ld\n", table->meals_number);
 }
