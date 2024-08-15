@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   getters_and_setters.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmdemirk <dmdemirk@student.42london.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/15 17:34:48 by dmdemirk          #+#    #+#             */
+/*   Updated: 2024/08/15 17:47:25 by dmdemirk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 
 void	set_bool(pthread_mutex_t *mutex, bool *dest, bool value);
@@ -17,7 +29,7 @@ void	set_bool(pthread_mutex_t *mutex, bool *dest, bool value)
 
 bool	get_bool(pthread_mutex_t *mutex, bool *dest)
 {
-	bool value;
+	bool	value;
 
 	mutex_handle(mutex, LOCK);
 	value = *dest;
@@ -34,7 +46,7 @@ void	set_long(pthread_mutex_t *mutex, long *dest, long value)
 
 long	get_long(pthread_mutex_t *mutex, long *dest)
 {
-	long value;
+	long	value;
 
 	mutex_handle(mutex, LOCK);
 	value = *dest;

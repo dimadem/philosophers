@@ -36,7 +36,7 @@ PHILO_OBJS	=	$(PHILO_SOURCES:$(PHILO_DIR)%.c=$(BUILD_DIR)%.o)
 all: $(NAME)
 
 $(NAME): $(PHILO_OBJS)
-	@$(CC) $(CFLAGS) $(DFLAGS) -o $(NAME) $(PHILO_OBJS)
+	@$(CC) $(CFLAGS) -o $(NAME) $(PHILO_OBJS) $(DFLAGS)
 	@echo $(GREEN)"philo ✅"$(RESET)
 
 $(BUILD_DIR)%.o: $(PHILO_DIR)%.c

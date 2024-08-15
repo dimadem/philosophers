@@ -1,21 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmdemirk <dmdemirk@student.42london.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/15 17:35:13 by dmdemirk          #+#    #+#             */
+/*   Updated: 2024/08/15 17:44:44 by dmdemirk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 
 void	parse_input(t_table *table, char **argv);
 
-static inline bool is_digit(char c)
+static inline bool	is_digit(char c)
 {
 	return (c >= '0' && c <= '9');
 }
 
-static inline bool is_space(char c)
+static inline bool	is_space(char c)
 {
 	return ((c >= 9 && c <= 13) || c == 32);
 }
 
-static	const char *valid_input(const char *str)
+static	const char	*valid_input(const char *str)
 {
-	int len; //len of the str
-	const char *number;
+	int			string_len;
+	const char	*number;
 
 	len = 0;
 	while (is_space(*str))
@@ -28,15 +40,15 @@ static	const char *valid_input(const char *str)
 		error_exit("Accept only digits");
 	number = str;
 	while (is_digit(*str++))
-		++len;
+		++string_len;
 	if (len > 10)
 		error_exit("Number is too big");
 	return (number);
 }
 
-static long ft_atol(const char *str)
+static long	ft_atol(const char *str)
 {
-	long 	number;
+	long	number;
 
 	number = 0;
 	str = valid_input(str);

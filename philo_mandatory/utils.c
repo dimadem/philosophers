@@ -1,24 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dmdemirk <dmdemirk@student.42london.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/15 17:35:18 by dmdemirk          #+#    #+#             */
+/*   Updated: 2024/08/15 17:43:22 by dmdemirk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 
-void error_exit(const char *msg);
-long get_time(t_time_code time_code);
-void precise_usleep(t_table *table, long usec);
+void	error_exit(const char *msg);
+long	get_time(t_time_code time_code);
+void	precise_usleep(t_table *table, long usec);
 
-void error_exit(const char *msg)
+void	error_exit(const char *msg)
 {
 	printf(RED "%s\n" RESET, msg);
 	exit(1);
 }
 
 /* time_code -> SECONDS MILLISECONDS MICROSECONDS */
-long get_time(t_time_code time_code)
+long	get_time(t_time_code time_code)
 {
-	struct timeval time;
+	struct timeval	time;
 
 	if (gettimeofday(&time, NULL))
 		error_exit(RED"Gettimeofday failed"RESET);
 	if (SECONDS == time_code)
-		return(time.tv_sec + time.tv_usec / 1e6);
+		return (time.tv_sec + time.tv_usec / 1e6);
 	else if (MILLISECONDS == time_code)
 		return (time.tv_sec * 1e3 + time.tv_usec / 1e3);
 	else if (MICROSECONDS == time_code)
@@ -28,11 +40,11 @@ long get_time(t_time_code time_code)
 	return (1337);
 }
 
-void precise_usleep(t_table *table, long usec)
+void	precise_usleep(t_table *table, long usec)
 {
-	long start;
-	long elapsed;
-	long remaining;
+	long	start;
+	long	elapsed;
+	long	remaining;
 
 	start = get_time(MICROSECONDS);
 	while (get_time(MICROSECONDS) - start < usec)
@@ -43,9 +55,8 @@ void precise_usleep(t_table *table, long usec)
 		remaining = usec - elapsed;
 		if (remaining > 1e3)
 			usleep(remaining / 2);
-		else // less then 1ms
+		else
 		{
-			// SPINLOCK
 			while ((get_time(MICROSECONDS) - start) < usec)
 				;
 		}
