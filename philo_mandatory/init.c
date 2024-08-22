@@ -6,7 +6,7 @@
 /*   By: dmdemirk <dmdemirk@student.42london.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:34:53 by dmdemirk          #+#    #+#             */
-/*   Updated: 2024/08/15 17:47:07 by dmdemirk         ###   ########.fr       */
+/*   Updated: 2024/08/22 11:43:21 by dmdemirk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static void	assign_forks(t_philo *philo, t_fork *forks, int philo_pos)
 	p_number = philo->table->philosophers_number;
 	if (philo->id % 2 == 0)
 	{
-		philo->right_fork = &forks[philo_pos];
-		philo->left_fork = &forks[(philo_pos + 1) % p_number];
+		philo->first_fork = &forks[philo_pos];
+		philo->second_fork = &forks[(philo_pos + 1) % p_number];
 	}
 	else
 	{
-		philo->right_fork = &forks[(philo_pos + 1) % p_number];
-		philo->left_fork = &forks[philo_pos];
+		philo->first_fork = &forks[(philo_pos + 1) % p_number];
+		philo->second_fork = &forks[philo_pos];
 	}
 }
 
@@ -56,7 +56,9 @@ void	init_table(t_table *table)
 	i = -1;
 	table->end_simulation = false;
 	table->all_threads_ready = false;
+	table->start_simulation = 0;
 	mutex_handle(&table->mutex, INIT);
+	mutex_handle(&table->write, INIT);
 	table->philos_array = malloc_handle(sizeof(t_philo) \
 		* table->philosophers_number);
 	table->forks_array = malloc_handle(sizeof(t_fork) \

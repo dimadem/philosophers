@@ -17,7 +17,8 @@ PHILO_DIR	=	./philo_mandatory
 BUILD_DIR	=	./build/
 
 #files
-PHILO_SOURCES	=	$(PHILO_DIR)/dinner.c \
+PHILO_SOURCES	=	$(PHILO_DIR)/die.c \
+					$(PHILO_DIR)/dinner.c \
 					$(PHILO_DIR)/eat.c \
 					$(PHILO_DIR)/getters_and_setters.c \
 					$(PHILO_DIR)/init.c \

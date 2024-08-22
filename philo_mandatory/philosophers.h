@@ -6,7 +6,7 @@
 /*   By: dmdemirk <dmdemirk@student.42london.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:34:39 by dmdemirk          #+#    #+#             */
-/*   Updated: 2024/08/15 17:54:00 by dmdemirk         ###   ########.fr       */
+/*   Updated: 2024/08/22 11:39:21 by dmdemirk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <errno.h>
 
 /* debug macro */
-# define DEBUG_MODE 0
+# define DEBUG_MODE 1
 
 /* ANSI Escape Sequences for text colors */
 
@@ -62,8 +62,8 @@ typedef enum e_p_status
 	EATING,
 	SLEEPING,
 	THINKING,
-	TAKE_LEFT_FORK,
-	TAKE_RIGHT_FORK
+	TAKE_FIRST_FORK,
+	TAKE_SECOND_FORK
 }	t_p_status;
 
 /* structures */
@@ -81,8 +81,8 @@ typedef struct s_philo
 	long			meals_counter;
 	bool			full;
 	long			last_meal_time; // time massed from last meal
-	t_fork			*left_fork;
-	t_fork			*right_fork;
+	t_fork			*first_fork;
+	t_fork			*second_fork;
 	pthread_t		thread_id;
 	pthread_mutex_t	mutex; // for races with the monitor
 	t_table			*table;
@@ -91,15 +91,16 @@ typedef struct s_philo
 typedef struct s_table
 {
 	long			philosophers_number;
-	long			time_to_die;
-	long			time_to_eat;
-	long			time_to_sleep;
-	long			meals_number; // [5] | FLAG if -1;
+	long			time_to_die;      // lifetime 
+	long			time_to_eat;      // eat time
+	long			time_to_sleep;    // sleep time
+	long			meals_number;     // [5] | FLAG if -1;
 	long			start_simulation; // time when simulation started
 	bool			end_simulation;
 	bool			all_threads_ready;
 	pthread_mutex_t	mutex;
 	pthread_mutex_t	write;
+	pthread_t		monitor;
 	t_fork			*forks_array;
 	t_philo			*philos_array;
 }	t_table;
@@ -125,6 +126,9 @@ void	eating(t_philo *philo);
 
 /* think	*/
 void	thinking(t_philo *philo);
+
+/*	die 	*/
+void	*monitor_simulation(void *data);
 
 /* write */
 void	write_status(t_p_status status, t_philo *philo, bool debug);
