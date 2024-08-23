@@ -13,9 +13,32 @@
 #include "philosophers.h"
 
 void	wait_all_threads(t_table *table);
+void	*monitor_simulation(void *data);
 
 void	wait_all_threads(t_table *table)
 {
 	while (!get_bool(&table->mutex, &table->all_threads_ready))
 		;
+}
+
+void	*monitor_simulation(void *data)
+{
+	t_table	*table;
+	int		i;
+
+	table = (t_table *)data;
+    wait_all_threads(table);
+	while (!simulation_finished(table))
+	{
+		i = -1;
+		while (++i < table->philosophers_number && !simulation_finished(table))
+		{
+			if (dead(&table->philos_array[i]) == true)
+            {
+                set_bool(&table->mutex, &table->end_simulation, true);
+                write_status(DEAD, &table->philos_array[i], DEBUG_MODE);
+            }
+		}
+	}
+	return (NULL);
 }

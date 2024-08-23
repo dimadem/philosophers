@@ -15,6 +15,7 @@
 void	error_exit(const char *msg);
 long	get_time(t_time_code time_code);
 void	precise_usleep(t_table *table, long usec);
+bool	simulation_finished(t_table *table);
 
 void	error_exit(const char *msg)
 {
@@ -62,4 +63,9 @@ void	precise_usleep(t_table *table, long usec)
 		}
 		usleep(100);
 	}
+}
+
+bool	simulation_finished(t_table *table)
+{
+	return (get_bool(&table->mutex, &table->end_simulation));
 }

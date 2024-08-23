@@ -128,7 +128,7 @@ void	eating(t_philo *philo);
 void	thinking(t_philo *philo);
 
 /*	die 	*/
-void	*monitor_simulation(void *data);
+bool dead(t_philo *philo);
 
 /* write */
 void	write_status(t_p_status status, t_philo *philo, bool debug);
@@ -147,5 +147,6 @@ void	precise_usleep(t_table *table, long usec);
 
 /* monitor utils*/
 void	wait_all_threads(t_table *table);
+void	*monitor_simulation(void *data);
 
 #endif
