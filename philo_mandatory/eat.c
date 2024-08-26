@@ -26,13 +26,13 @@ void	eating(t_philo *philo)
 	write_status(TAKE_FIRST_FORK, philo, DEBUG_MODE);
 	mutex_handle(&philo->second_fork->mutex, LOCK);
 	write_status(TAKE_SECOND_FORK, philo, DEBUG_MODE);
+	if ((philo->table->meals_number > 0)
+		&& (philo->meals_counter == philo->table->meals_number))
+		set_bool(&philo->mutex, &philo->full, true);
 	set_long(&philo->mutex, &philo->last_meal_time, get_time(MILLISECONDS));
 	philo->meals_counter++;
 	write_status(EATING, philo, DEBUG_MODE);
 	precise_usleep(philo->table, philo->table->time_to_eat);
-	if ((philo->table->meals_number > 0)
-		&& (philo->meals_counter == philo->table->meals_number))
-		set_bool(&philo->mutex, &philo->full, true);
 	mutex_handle(&philo->first_fork->mutex, UNLOCK);
 	mutex_handle(&philo->second_fork->mutex, UNLOCK);
 }

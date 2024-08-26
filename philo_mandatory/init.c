@@ -63,6 +63,7 @@ void	init_table(t_table *table)
 	table->end_simulation = false;
 	table->all_threads_ready = false;
 	table->start_simulation = 0;
+	table->philo_threads_number = 0;
 	mutex_handle(&table->mutex, INIT);
 	mutex_handle(&table->write, INIT);
 	table->philos_array = malloc_handle(sizeof(t_philo) \
@@ -73,7 +74,7 @@ void	init_table(t_table *table)
 	while (++i < table->philosophers_number)
 	{
 		mutex_handle(&table->forks_array[i].mutex, INIT);
-		table->forks_array[i].id = i;
+		table->forks_array[i].id = i + 1;
 	}
 	init_philos(table);
 }
