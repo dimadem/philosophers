@@ -17,4 +17,6 @@ void	thinking(t_philo *philo);
 void	thinking(t_philo *philo)
 {
 	write_status(THINKING, philo, DEBUG_MODE);
+	if (philo->table->philosophers_number % 2 == 1)
+        precise_usleep(philo->table, philo->table->time_to_eat / 2);
 }

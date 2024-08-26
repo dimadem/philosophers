@@ -7,8 +7,8 @@ NAME	=	philo
 
 #comands
 CC	=	cc
-DFLAGS	=	-g
-CFLAGS	=	-Wall -Wextra -Werror
+DFLAGS	=	-g #-g3 -gdwarf-3 #-fsanitize=thread
+CFLAGS	=	-Wall -Wextra -Werror -pthread
 RM		=	rm -rf
 SILENT	=	--silent
 
@@ -20,6 +20,7 @@ BUILD_DIR	=	./build/
 PHILO_SOURCES	=	$(PHILO_DIR)/die.c \
 					$(PHILO_DIR)/dinner.c \
 					$(PHILO_DIR)/eat.c \
+					$(PHILO_DIR)/free.c \
 					$(PHILO_DIR)/getters_and_setters.c \
 					$(PHILO_DIR)/init.c \
 					$(PHILO_DIR)/main.c \

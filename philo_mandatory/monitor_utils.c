@@ -14,31 +14,47 @@
 
 void	wait_all_threads(t_table *table);
 void	*monitor_simulation(void *data);
+int	ready_all_philo_threads(t_table *table);
 
 void	wait_all_threads(t_table *table)
 {
-	while (!get_bool(&table->mutex, &table->all_threads_ready))
-		;
+  while (!get_bool(&table->mutex, &table->all_threads_ready))
+    ;
+}
+
+int	ready_all_philo_threads(t_table *table)
+{
+    int	ready;
+
+    ready = 1;
+    mutex_handle(&table->mutex, LOCK);
+    if (table->philosophers_number == table->philo_threads_number)
+        ready = 0;
+    mutex_handle(&table->mutex, UNLOCK);
+    return (ready);
 }
 
 void	*monitor_simulation(void *data)
 {
-	t_table	*table;
-	int		i;
+  t_table	*table;
+  int		i;
 
-	table = (t_table *)data;
-    wait_all_threads(table);
-	while (!simulation_finished(table))
-	{
-		i = -1;
-		while (++i < table->philosophers_number && !simulation_finished(table))
-		{
-			if (dead(&table->philos_array[i]) == true)
-            {
-                set_bool(&table->mutex, &table->end_simulation, true);
-                write_status(DEAD, &table->philos_array[i], DEBUG_MODE);
-            }
-		}
-	}
-	return (NULL);
+  table = (t_table *)data;
+  while(ready_all_philo_threads(table))
+    ;
+  while (!simulation_finished(table))
+  {
+    i = -1;
+    while ((++i < table->philosophers_number) && !simulation_finished(table))
+    {
+      if (dead(&table->philos_array[i]) == true)
+      {
+        // printf("%s %d %s\n", "Philosopher", i + 1, "is dead");
+        write_status(DEAD, &table->philos_array[i], DEBUG_MODE);
+        set_bool(&table->mutex, &table->end_simulation, true);
+        break ;
+      }
+    }
+  }
+  return (NULL);
 }

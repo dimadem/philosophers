@@ -19,11 +19,10 @@ bool	simulation_finished(t_table *table);
 
 void	error_exit(const char *msg)
 {
-	printf(RED "%s\n" RESET, msg);
+	printf(RED"%s\n"RESET, msg);
 	exit(1);
 }
 
-/* time_code -> SECONDS MILLISECONDS MICROSECONDS */
 long	get_time(t_time_code time_code)
 {
 	struct timeval	time;
@@ -65,7 +64,8 @@ void	precise_usleep(t_table *table, long usec)
 	}
 }
 
+
 bool	simulation_finished(t_table *table)
 {
-	return (get_bool(&table->mutex, &table->end_simulation));
+	return (get_bool(&table->mutex, &table->end_simulation) == true);
 }

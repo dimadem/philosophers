@@ -23,7 +23,7 @@
 # include <errno.h>
 
 /* debug macro */
-# define DEBUG_MODE 1
+# define DEBUG_MODE 0
 
 /* ANSI Escape Sequences for text colors */
 
@@ -95,6 +95,7 @@ typedef struct s_table
 	long			time_to_eat;      // eat time
 	long			time_to_sleep;    // sleep time
 	long			meals_number;     // [5] | FLAG if -1;
+	long            philo_threads_number;
 	long			start_simulation; // time when simulation started
 	bool			end_simulation;
 	bool			all_threads_ready;
@@ -148,5 +149,9 @@ void	precise_usleep(t_table *table, long usec);
 /* monitor utils*/
 void	wait_all_threads(t_table *table);
 void	*monitor_simulation(void *data);
+int		ready_all_philo_threads(t_table *table);
+
+/*	free	*/
+void free_all(t_table *table);
 
 #endif
