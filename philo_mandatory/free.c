@@ -34,10 +34,6 @@ void	free_all(t_table *table)
 	}
 	mutex_handle(&table->mutex, DESTROY);
 	mutex_handle(&table->write, DESTROY);
-	i = -1;
-	while (++i < table->philosophers_number)
-	{
-		free(&table->philos_array[i]);
-		free(&table->forks_array[i]);
-	}
+	free(table->philos_array);
+	free(table->forks_array);
 }

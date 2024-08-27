@@ -29,20 +29,11 @@ void	*malloc_handle(size_t size)
 
 static void	thread_status(int status, t_opcode opcode)
 {
+	(void)opcode;
 	if (0 == status)
 		return ;
-	if (EAGAIN == status)
-		error_exit(RED"No resources to create another thread.\n"RESET);
-	else if (EPERM == status)
-		error_exit(RED"The caller does not have appropriate permission to set"
-			"the required scheduling parameters or scheduling policy.\n"RESET);
-	else if (EINVAL == status && CREATE == opcode)
-		error_exit(RED"The value specified by attr is invalid.\n"RESET);
-	else if (EINVAL == status && (JOIN == opcode || DETACH == opcode))
-		error_exit(RED"The value specified by thread is not joinable.\n"RESET);
-	else if (ESRCH == status)
-		error_exit(RED"No thread could be found corresponding to that"
-			"specified by the given thread ID.\n"RESET);
+	if (0 != status)
+		error_exit(RED"Thread error\n"RESET);
 }
 
 void	thread_handle(pthread_t *thread, void *(*func)(void *), \
@@ -60,25 +51,11 @@ void	thread_handle(pthread_t *thread, void *(*func)(void *), \
 
 static void	mutex_status(int status, t_opcode opcode)
 {
+	(void)opcode;
 	if (0 == status)
 		return ;
-	if (EINVAL == status
-		&& (LOCK == opcode || UNLOCK == opcode || DESTROY == opcode))
-		error_exit(RED"The value specified by mutex is invalid.\n"RESET);
-	else if (EINVAL == status && INIT == opcode)
-		error_exit(RED"The value specified by attr is invalid.\n"RESET);
-	else if (EDEADLK == status)
-		error_exit(RED"Deadlock would occur if the "
-			"thread blocked waiting for mutex.\n"RESET);
-	else if (EPERM == status)
-		error_exit(RED"The current thread does "
-			"not hold a lock on mutex.\n"RESET);
-	else if (ENOMEM == status)
-		error_exit(RED"Insufficient memory exists "
-			"to initialize the mutex.\n"RESET);
-	else if (EBUSY == status)
-		error_exit(RED"The mutex could not be acquired "
-			"because it was already locked.\n"RESET);
+	else if (0 != status)
+		error_exit(RED"Mutex error\n"RESET);
 }
 
 void	mutex_handle(pthread_mutex_t *mutex, t_opcode opcode)

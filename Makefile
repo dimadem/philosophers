@@ -18,9 +18,9 @@ RESET	=	"\033[0m"
 NAME	=	philo
 
 #comands
-CC	=	gcc
+CC	=	cc
 DFLAGS	=	-g #-g3 -gdwarf-3 -fsanitize=thread
-CFLAGS	=	-Wall -Wextra -Werror -pthread -fsanitize=thread
+CFLAGS	=	-Wall -Wextra -Werror -pthread #-fsanitize=thread
 RM		=	rm -rf
 SILENT	=	--silent
 

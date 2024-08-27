@@ -80,11 +80,11 @@ typedef struct s_philo
 	int				id;
 	long			meals_counter;
 	bool			full;
-	long			last_meal_time; // time massed from last meal
+	long			last_meal_time;
 	t_fork			*first_fork;
 	t_fork			*second_fork;
 	pthread_t		thread_id;
-	pthread_mutex_t	mutex; // for races with the monitor
+	pthread_mutex_t	mutex;
 	t_table			*table;
 }	t_philo;
 
