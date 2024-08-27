@@ -19,4 +19,4 @@ jobs:
     - name: Build project
       run: make
     - name: Run Valgrind
-      run: valgrind --leak-check=full --show-leak-kinds=all ./philo 5 800 200 200 7
+      run: valgrind --tool=helgrind ./philo 5 800 200 200 7
