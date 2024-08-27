@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: dmdemirk <dmdemirk@student.42london.c      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/08/27 11:18:24 by dmdemirk          #+#    #+#              #
+#    Updated: 2024/08/27 12:08:32 by dmdemirk         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 # colors
 RED		=	"\033[0;31m"
 GREEN	=	"\033[0;32m"
@@ -6,9 +18,9 @@ RESET	=	"\033[0m"
 NAME	=	philo
 
 #comands
-CC	=	cc
-DFLAGS	=	-g #-g3 -gdwarf-3 #-fsanitize=thread
-CFLAGS	=	-Wall -Wextra -Werror -pthread
+CC	=	gcc
+DFLAGS	=	-g #-g3 -gdwarf-3 -fsanitize=thread
+CFLAGS	=	-Wall -Wextra -Werror -pthread -fsanitize=thread
 RM		=	rm -rf
 SILENT	=	--silent
 

@@ -6,7 +6,7 @@
 /*   By: dmdemirk <dmdemirk@student.42london.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:34:46 by dmdemirk          #+#    #+#             */
-/*   Updated: 2024/08/22 11:26:53 by dmdemirk         ###   ########.fr       */
+/*   Updated: 2024/08/27 11:23:25 by dmdemirk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	eating(t_philo *philo);
  */
 
 void	eating(t_philo *philo)
-{	
+{
 	mutex_handle(&philo->first_fork->mutex, LOCK);
 	write_status(TAKE_FIRST_FORK, philo, DEBUG_MODE);
 	mutex_handle(&philo->second_fork->mutex, LOCK);

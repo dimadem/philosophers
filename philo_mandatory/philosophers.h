@@ -6,7 +6,7 @@
 /*   By: dmdemirk <dmdemirk@student.42london.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:34:39 by dmdemirk          #+#    #+#             */
-/*   Updated: 2024/08/22 11:39:21 by dmdemirk         ###   ########.fr       */
+/*   Updated: 2024/08/27 11:46:10 by dmdemirk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,12 @@ typedef struct s_philo
 typedef struct s_table
 {
 	long			philosophers_number;
-	long			time_to_die;      // lifetime 
-	long			time_to_eat;      // eat time
-	long			time_to_sleep;    // sleep time
-	long			meals_number;     // [5] | FLAG if -1;
-	long            philo_threads_number;
-	long			start_simulation; // time when simulation started
+	long			time_to_die;
+	long			time_to_eat;
+	long			time_to_sleep;
+	long			meals_number;
+	long			philo_threads_number;
+	long			start_simulation;
 	bool			end_simulation;
 	bool			all_threads_ready;
 	pthread_mutex_t	mutex;
@@ -129,7 +129,7 @@ void	eating(t_philo *philo);
 void	thinking(t_philo *philo);
 
 /*	die 	*/
-bool dead(t_philo *philo);
+bool	dead(t_philo *philo);
 
 /* write */
 void	write_status(t_p_status status, t_philo *philo, bool debug);
@@ -152,6 +152,6 @@ void	*monitor_simulation(void *data);
 int		ready_all_philo_threads(t_table *table);
 
 /*	free	*/
-void free_all(t_table *table);
+void	free_all(t_table *table);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dmdemirk <dmdemirk@student.42london.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:35:18 by dmdemirk          #+#    #+#             */
-/*   Updated: 2024/08/15 17:43:22 by dmdemirk         ###   ########.fr       */
+/*   Updated: 2024/08/27 11:33:41 by dmdemirk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	precise_usleep(t_table *table, long usec)
 		usleep(100);
 	}
 }
-
 
 bool	simulation_finished(t_table *table)
 {
